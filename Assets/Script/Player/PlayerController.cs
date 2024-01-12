@@ -28,9 +28,11 @@ public class PlayerController : MonoBehaviour
     public bool isMove;
     public bool isStop;
     public bool isBoost;
-    public bool isCollisionGround;
+    public bool isGrounded;
+    private bool isSlope;
     private RaycastHit2D raycastHit;
-    private RaycastHit2D slopeHit;
+    private RaycastHit2D rightSlopeHit;
+    private RaycastHit2D leftSlopeHit;
 
     public Transform childAngle;
     public int anglePos;
@@ -113,10 +115,23 @@ public class PlayerController : MonoBehaviour
 
     private void SetSlopeHit()
     {
-        slopeHit = Physics2D.Raycast(transform.position, -transform.up, slopeHitDistance, 1 << 6);
-        Debug.DrawRay(transform.position, -transform.up * slopeHitDistance, Color.blue);
+        rightSlopeHit = Physics2D.Raycast(transform.position+new Vector3(0.61f, -0.5f, 0), -transform.up, slopeHitDistance, 1 << 6);
+        leftSlopeHit = Physics2D.Raycast(transform.position + new Vector3(-0.6f, -0.5f, 0), -transform.up, slopeHitDistance, 1 << 6);
+        
+        Debug.DrawRay(transform.position + new Vector3(0.62f, -0.5f, 0), -transform.up * slopeHitDistance, Color.cyan);
+        Debug.DrawRay(transform.position + new Vector3(-0.6f, -0.5f, 0), -transform.up * slopeHitDistance, Color.cyan);
+
+        if (rightSlopeHit || leftSlopeHit)
+        {
+            isGrounded = true;
+        }
+
+        if (!rightSlopeHit && !leftSlopeHit)
+        {
+            isGrounded = false;
+        }
     }
-   
+    
 
     private void SetJumpFlag()
     {
@@ -147,7 +162,7 @@ public class PlayerController : MonoBehaviour
 
     private void ChangePlayerAngle()
     {
-        if (slopeHit)
+        if (isGrounded)
         {
             if (raycastHit.normal.x >= 0)
             {
@@ -162,15 +177,38 @@ public class PlayerController : MonoBehaviour
             transform.localEulerAngles = new Vector3(0, 0, playerAngle);
         }
 
-        if (!isCollisionGround)
+        if (!isGrounded)
         {
             transform.localEulerAngles += new Vector3(0, 0, -0.01f * airRotateForce);
+            rigid.constraints = RigidbodyConstraints2D.None;
         }
+        else
+        {
+            rigid.constraints = RigidbodyConstraints2D.FreezeRotation;
+        }
+
     }
 
+    private void ElevatePlayer()
+    {
+        if (rightSlopeHit)
+        {
+            Vector3 playerPos = transform.position;
+            playerPos.y -= rightSlopeHit.distance;
+            transform.position = playerPos;
+            return;
+        }
+        if (leftSlopeHit)
+        {
+            Vector3 playerPos = transform.position;
+            playerPos.y -= leftSlopeHit.distance;
+            transform.position = playerPos;
+            return;
+        }
+    }
     private void PlayerState()
     {
-        if (slopeHit&&isMove)
+        if (isGrounded&&isMove)
         {
             MovePlayer();
         }
@@ -180,7 +218,7 @@ public class PlayerController : MonoBehaviour
             BoostPlayer();
         }
 
-        if (!slopeHit)
+        if (!isGrounded)
         {
             RotatePlayer();
         }
@@ -201,41 +239,17 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void OnCollisionStay2D(Collision2D target)
-    {
-        if (target.gameObject.CompareTag("Terrain"))
-        {
-            isCollisionGround = true;
-        }
-
-        if (!slopeHit)
-        {
-            rigid.constraints = RigidbodyConstraints2D.None;
-        }
-        else
-        {
-            rigid.constraints = RigidbodyConstraints2D.FreezeRotation;
-        }
-    }
-
-    void OnCollisionExit2D(Collision2D target)
-    {
-        if (target.gameObject.CompareTag("Terrain"))
-        {
-            isCollisionGround = false;
-        }
-    }
-
     void FixedUpdate()
     {
        
         SetVelocity();
         PlayerState();
+
     }
 
     void Update()
     {
-
+        //ElevatePlayer();
         SetRaycastHit();
         SetSlopeHit();
         SetJumpFlag();
