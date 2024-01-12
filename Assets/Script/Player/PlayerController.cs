@@ -194,15 +194,15 @@ public class PlayerController : MonoBehaviour
         if (rightSlopeHit)
         {
             Vector3 playerPos = transform.position;
-            playerPos.y -= rightSlopeHit.distance;
-            transform.position = playerPos;
+            playerPos.y += rightSlopeHit.distance;
+            transform.localPosition = playerPos;
             return;
         }
         if (leftSlopeHit)
         {
             Vector3 playerPos = transform.position;
-            playerPos.y -= leftSlopeHit.distance;
-            transform.position = playerPos;
+            playerPos.y += leftSlopeHit.distance;
+            transform.localPosition = playerPos;
             return;
         }
     }
@@ -249,7 +249,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        //ElevatePlayer();
+        ElevatePlayer();
         SetRaycastHit();
         SetSlopeHit();
         SetJumpFlag();

@@ -5770,7 +5770,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rayDistance: 1.5
-  slopeHitDistance: 1
+  slopeHitDistance: 0.5
   rigid: {fileID: 0}
   jumpForce: 90
   doubleJumpForce: 140
@@ -5821,7 +5821,7 @@ MonoBehaviour:
   isMove: 0
   isStop: 0
   isBoost: 0
-  isCollisionGround: 0
+  isGrounded: 0
   childAngle: {fileID: 0}
   anglePos: 180
   airRotateForce: 5
@@ -5832,7 +5832,7 @@ PolygonCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 408352398}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 6200000, guid: d62f3b5835a34274c96b4bfa47ed90fb, type: 2}
   m_IsTrigger: 0
@@ -5901,7 +5901,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 408352398}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 6200000, guid: d62f3b5835a34274c96b4bfa47ed90fb, type: 2}
   m_IsTrigger: 0
