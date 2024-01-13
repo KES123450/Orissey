@@ -172,8 +172,8 @@ public class PlayerController : MonoBehaviour
             {
                 playerAngle = Vector3.Angle(upDirection, raycastHit.normal);
             }
-            /*Quaternion targetRotation = Quaternion.Euler(0, 0, playerAngle);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime*rotateInterpolationFactor);*/
+            Quaternion targetRotation = Quaternion.Euler(0, 0, playerAngle);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime*rotateInterpolationFactor);
             transform.localEulerAngles = new Vector3(0, 0, playerAngle);
         }
 
@@ -191,20 +191,23 @@ public class PlayerController : MonoBehaviour
 
     private void ElevatePlayer()
     {
-        if (rightSlopeHit)
-        {
-            Vector3 playerPos = transform.position;
-            playerPos.y += rightSlopeHit.distance;
-            transform.localPosition = playerPos;
-            return;
-        }
-        if (leftSlopeHit)
-        {
-            Vector3 playerPos = transform.position;
-            playerPos.y += leftSlopeHit.distance;
-            transform.localPosition = playerPos;
-            return;
-        }
+        /* if (rightSlopeHit)
+         {
+             Vector3 playerPos = transform.position;
+             playerPos.y += rightSlopeHit.distance;
+             transform.localPosition = playerPos;
+             return;
+         }
+         if (leftSlopeHit)
+         {
+             Vector3 playerPos = transform.position;
+             playerPos.y += leftSlopeHit.distance;
+             transform.localPosition = playerPos;
+             return;
+         }*/
+        //Vector2 v = new Vector2(rigid.velocity.x, -0.6f);
+        //rigid.velocity = v;
+
     }
     private void PlayerState()
     {
