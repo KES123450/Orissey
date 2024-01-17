@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float rayDistance = 5f;
-    public float slopeHitDistance;
+    [SerializeField] private float rayDistance = 5f;
+    [SerializeField] private float slopeHitDistance;
     public Rigidbody2D rigid;
-    public float jumpForce;
-    public float doubleJumpForce;
     public float walkForce;
     public float maxWalkForce;
     public float gravityForce = 5f;
@@ -19,12 +17,10 @@ public class PlayerController : MonoBehaviour
     private Vector3 upDirection;
 
     float playerAngle;
-    public float boostCheck=0;
+    private float boostCheck=0;
     
     public AnimationCurve jumpAnimation;
     public float GoalTime;
-    public bool isJump; // 점프중인지 체크
-    public bool isDoubleJump;
     public bool isMove;
     public bool isStop;
     public bool isBoost;
@@ -37,10 +33,14 @@ public class PlayerController : MonoBehaviour
     public Transform childAngle;
     public int anglePos;
     public int airRotateForce;
-
-
-    private IPlayerState moveState, boostState,jumpState, doubleJumpState, rotateState, stopState;
+    private float boostTimer;
+    [SerializeField] private float boostTime;
+    [SerializeField] private float boostForce;
+    private IPlayerState moveState, rotateState, stopState;
     private PlayerStateContext playerStateContext;
+
+    [SerializeField] private ParticleSystem boostParticle;
+    [SerializeField] private ParticleSystem flipParticle;
 
     void Start()
     {
@@ -51,31 +51,14 @@ public class PlayerController : MonoBehaviour
         upDirection = new Vector3(0, 1, 0);
 
         playerStateContext = new PlayerStateContext(this);
-        moveState = gameObject.AddComponent<PlayerMoveState>();
-        boostState= gameObject.AddComponent<PlayerBoostState>();
-        jumpState = gameObject.AddComponent<PlayerJumpState>();
-        doubleJumpState = gameObject.AddComponent<PlayerDoubleJumpState>();
-        rotateState = gameObject.AddComponent<PlayerRotateState>();
-        stopState= gameObject.AddComponent<PlayerStopState>();
+        moveState = GetComponent<PlayerMoveState>();
+        rotateState = GetComponent<PlayerRotateState>();
+        stopState= GetComponent<PlayerStopState>();
     }
 
     public void MovePlayer()
     {
         playerStateContext.Transition(moveState);
-    }
-    public void BoostPlayer()
-    {
-        playerStateContext.Transition(boostState);
-    }
-
-    public void JumpPlayer()
-    {
-        playerStateContext.Transition(jumpState);
-    }
-
-    public void DoubleJumpPlayer()
-    {
-        playerStateContext.Transition(doubleJumpState);
     }
 
     public void RotatePlayer()
@@ -123,6 +106,7 @@ public class PlayerController : MonoBehaviour
 
         if (rightSlopeHit || leftSlopeHit)
         {
+            boostCheck = 0;
             isGrounded = true;
         }
 
@@ -135,20 +119,6 @@ public class PlayerController : MonoBehaviour
 
     private void SetJumpFlag()
     {
-        /*if (Input.GetKeyDown(KeyCode.Space) && raycastHit && isDoubleJump == false)
-        {
-            isJump = true;
-            isBoost = false;
-            boostCheck = 0;
-        }
-
-        if (Input.GetKeyDown(KeyCode.Space) && isJump == true && isDoubleJump == false)
-        {
-            isDoubleJump = true;
-            isJump = false;
-            time = 0;
-        }*/
-
         if (Input.GetKey(KeyCode.RightArrow))
         {
             isMove = true;
@@ -157,6 +127,19 @@ public class PlayerController : MonoBehaviour
         if (!Input.GetKey(KeyCode.RightArrow))
         {
             isMove = false;
+        }
+    }
+
+    public void SetBoostCheck(float value)
+    {
+        boostCheck += value;
+        if (boostCheck >= 360)
+        {
+            flipParticle.Play();
+            boostTimer = boostTime;
+            isBoost = true;
+            boostCheck = 0;
+           
         }
     }
 
@@ -172,6 +155,7 @@ public class PlayerController : MonoBehaviour
             {
                 playerAngle = Vector3.Angle(upDirection, raycastHit.normal);
             }
+
             Quaternion targetRotation = Quaternion.Euler(0, 0, playerAngle);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime*rotateInterpolationFactor);
             transform.localEulerAngles = new Vector3(0, 0, playerAngle);
@@ -180,6 +164,7 @@ public class PlayerController : MonoBehaviour
         if (!isGrounded)
         {
             transform.localEulerAngles += new Vector3(0, 0, -0.01f * airRotateForce);
+            SetBoostCheck(-0.01f * airRotateForce);
             rigid.constraints = RigidbodyConstraints2D.None;
         }
         else
@@ -189,26 +174,29 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    private void ElevatePlayer()
+    private void ActivateBoost()
     {
-        /* if (rightSlopeHit)
-         {
-             Vector3 playerPos = transform.position;
-             playerPos.y += rightSlopeHit.distance;
-             transform.localPosition = playerPos;
-             return;
-         }
-         if (leftSlopeHit)
-         {
-             Vector3 playerPos = transform.position;
-             playerPos.y += leftSlopeHit.distance;
-             transform.localPosition = playerPos;
-             return;
-         }*/
-        //Vector2 v = new Vector2(rigid.velocity.x, -0.6f);
-        //rigid.velocity = v;
+        if (isBoost&&isGrounded)
+        {
+            if (!boostParticle.isPlaying) {
+                boostParticle.Play();
+            }
 
+            if (rigid.velocity.x >= 0)
+            {
+                rigid.velocity += rigid.velocity.normalized * boostForce * Time.deltaTime;
+            }
+            
+            boostTimer -= Time.deltaTime;
+            if (boostTimer <= 0)
+            {
+                boostParticle.Stop();
+                isBoost = false;
+            }
+        }
     }
+
+   
     private void PlayerState()
     {
         if (isGrounded&&isMove)
@@ -216,26 +204,11 @@ public class PlayerController : MonoBehaviour
             MovePlayer();
         }
 
-        if (!isJump && !isDoubleJump && isBoost)
-        {
-            BoostPlayer();
-        }
-
         if (!isGrounded)
         {
             RotatePlayer();
         }
-/*
-        if (isJump)
-        {
-            JumpPlayer();
-        }
 
-        if (isDoubleJump)
-        {
-            DoubleJumpPlayer();
-        }
-*/
         if (isStop)
         {
             StopPlayer();
@@ -252,10 +225,14 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        ElevatePlayer();
         SetRaycastHit();
         SetSlopeHit();
         SetJumpFlag();
         ChangePlayerAngle();
+    }
+
+    private void LateUpdate()
+    {
+        ActivateBoost();
     }
 }

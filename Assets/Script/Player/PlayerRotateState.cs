@@ -3,25 +3,19 @@ using UnityEngine;
 public class PlayerRotateState : MonoBehaviour, IPlayerState
 {
     private PlayerController playerController;
-
+    [SerializeField] private float rotateForce;
     public void Handle(PlayerController controller)
     {
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            controller.transform.localEulerAngles += new Vector3(0, 0, 0.01f * controller.anglePos);
-            controller.boostCheck += 0.01f * controller.anglePos;
-
-            if (controller.boostCheck >= 360)
-            {
-                controller.isBoost = true;
-                controller.boostCheck = 0;
-            }
+            controller.transform.localEulerAngles += new Vector3(0, 0, rotateForce * controller.anglePos);
+            controller.SetBoostCheck(rotateForce * controller.anglePos);
         }
 
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            controller.transform.localEulerAngles -= new Vector3(0, 0, 0.01f * controller.anglePos);
-            controller.boostCheck -= 0.01f * controller.anglePos;
+            controller.transform.localEulerAngles += new Vector3(0, 0, -rotateForce * controller.anglePos);
+            controller.SetBoostCheck(-rotateForce * controller.anglePos);
         }
     }
 }
