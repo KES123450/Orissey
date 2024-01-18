@@ -133,7 +133,7 @@ public class PlayerController : MonoBehaviour
     public void SetBoostCheck(float value)
     {
         boostCheck += value;
-        if (boostCheck >= 360)
+        if (boostCheck >= 180)
         {
             flipParticle.Play();
             boostTimer = boostTime;
