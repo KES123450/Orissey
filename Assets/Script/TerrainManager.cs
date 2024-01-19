@@ -25,28 +25,28 @@ public class TerrainManager : MonoBehaviour
         {
             case TerrainType.Plane1:
                 {
-                    Vector3 terrainPoint = previousTerrainEndPoint - terrainDatas[0].terrainStartLocalPoint;
+                    //Vector3 terrainPoint = previousTerrainEndPoint - terrainDatas[0].terrainStartLocalPoint;
                     Terrain Plane1 = terrainPool.GetTerrain(selectedTerrain);
-                    Plane1.transform.position = terrainPoint;
-                    previousTerrainEndPoint = Plane1.transform.TransformPoint(terrainDatas[0].terrainEndLocalPoint);
+                   // Plane1.transform.position = terrainPoint;
+                    //previousTerrainEndPoint = Plane1.transform.TransformPoint(terrainDatas[0].terrainEndLocalPoint);
                 }
                 break;
 
             case TerrainType.Plane2:
                 {
-                    Vector3 terrainPoint = previousTerrainEndPoint - terrainDatas[1].terrainStartLocalPoint;
+                    //Vector3 terrainPoint = previousTerrainEndPoint - terrainDatas[1].terrainStartLocalPoint;
                     Terrain Plane2 = terrainPool.GetTerrain(selectedTerrain);
-                    Plane2.transform.position = terrainPoint;
-                    previousTerrainEndPoint = Plane2.transform.TransformPoint(terrainDatas[1].terrainEndLocalPoint);
+                   // Plane2.transform.position = terrainPoint;
+                   // previousTerrainEndPoint = Plane2.transform.TransformPoint(terrainDatas[1].terrainEndLocalPoint);
                 }
                 break;
 
             case TerrainType.Steep1:
                 {
-                    Vector3 terrainPoint = previousTerrainEndPoint - terrainDatas[2].terrainStartLocalPoint;
+                    //Vector3 terrainPoint = previousTerrainEndPoint - terrainDatas[2].terrainStartLocalPoint;
                     Terrain Steep1 = terrainPool.GetTerrain(selectedTerrain);
-                    Steep1.transform.position = terrainPoint;
-                    previousTerrainEndPoint = Steep1.transform.TransformPoint(terrainDatas[2].terrainEndLocalPoint);
+                  //  Steep1.transform.position = terrainPoint;
+                    //previousTerrainEndPoint = Steep1.transform.TransformPoint(terrainDatas[2].terrainEndLocalPoint);
                 }
                 break;
         }
