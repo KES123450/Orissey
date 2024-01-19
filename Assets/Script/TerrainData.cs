@@ -2,20 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PrefabData
+public class TerrainData : MonoBehaviour
 {
-    public GameObject prefab;
-    public Vector3 prefabLocalPos;
-    public float parallaxFactorX, parallaxFactorY;
-    public int orderLayer;
-}
+    public void Init(Vector3 p1, Vector3 p2, Vector3 p3, Vector3 p4)
+    {
+        cp1 = p1;
+        cp2 = p2;
+        cp3 = p3;
+        cp4 = p4;
+    }
 
-[CreateAssetMenu(fileName = "TerrainData", menuName = "TerrainData")]
-public class TerrainData : ScriptableObject
-{
-    public Vector3 terrainStartLocalPoint;
-    public Vector3 terrainEndLocalPoint;
-
-    public List<PrefabData> prefabDataList = new List<PrefabData>();
+    public Vector3 cp1;
+    public Vector3 cp2;
+    public Vector3 cp3;
+    public Vector3 cp4;
     
 }

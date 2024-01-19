@@ -15,6 +15,7 @@ public class BezierMeshGenerator : MonoBehaviour
     public int pointNum;
     public string meshName;
 
+    public bool smoothMode;
     public void CreateBezierMesh()
     {
         GameObject ground = new GameObject();
@@ -25,6 +26,8 @@ public class BezierMeshGenerator : MonoBehaviour
         polygonCollider2D.points = bezierPoints;
 
         generatorMesh.generateMesh(ground,meshName);
+        ground.AddComponent<TerrainData>();
+        ground.GetComponent<TerrainData>().Init(p1, p2, p3, p4);
     }
 
 }
