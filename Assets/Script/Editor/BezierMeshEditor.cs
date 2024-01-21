@@ -6,8 +6,9 @@ using UnityEditor;
 [CustomEditor(typeof(BezierMeshGenerator))]
 public class BezierMeshEditor : Editor
 {
-    Collider2D prevTerrain;
-    BezierMeshGenerator bezierMeshGenerator;
+    private Collider2D prevTerrain;
+    private Collider2D nextTerrain;
+    private BezierMeshGenerator bezierMeshGenerator;
     private void OnSceneGUI()
     {
         bezierMeshGenerator = (BezierMeshGenerator)target;
@@ -42,15 +43,10 @@ public class BezierMeshEditor : Editor
         {
             PolygonCollider2D collider = terrain1.GetComponent<PolygonCollider2D>();
             bezierMeshGenerator.p1 = collider.transform.TransformPoint(collider.points[collider.points.Length - 2]);
-            if (bezierMeshGenerator.smoothMode) 
-            {
-                TerrainData data = collider.GetComponent<TerrainData>();
-                Vector3 offset = data.cp4 - data.cp3;
-                bezierMeshGenerator.p2 = bezierMeshGenerator.p1+offset;
-            }
         }
 
         Collider2D terrain2 = Physics2D.OverlapCircle(bezierMeshGenerator.p4, 1f);
+        nextTerrain = terrain2;
         if (terrain2 != null)
         {
             PolygonCollider2D collider = terrain2.GetComponent<PolygonCollider2D>();
@@ -64,6 +60,14 @@ public class BezierMeshEditor : Editor
         Vector3 offset = data.cp4 - data.cp3;
         bezierMeshGenerator.p2 = bezierMeshGenerator.p1 + offset;
     }
+
+    private void SetP3Pos()
+    {
+        TerrainData data = nextTerrain.GetComponent<TerrainData>();
+        Vector3 offset = data.cp1 - data.cp2;
+        bezierMeshGenerator.p3 = bezierMeshGenerator.p4 + offset;
+    }
+
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
@@ -72,9 +76,14 @@ public class BezierMeshEditor : Editor
             bezierMeshGenerator.CreateBezierMesh();
         }
 
-        if (GUILayout.Button("SmoothGenerateP2"))
+        if (GUILayout.Button("SmoothP2"))
         {
             SetP2Pos();
+        }
+
+        if (GUILayout.Button("SmoothP3"))
+        {
+            SetP3Pos();
         }
     }
 }
