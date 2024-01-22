@@ -35,14 +35,15 @@ public class BezierGenerator : MonoBehaviour
 
         float interval = (float)1 / pointNum;
 
-        bezierPoints[0] = new Vector2(p1.x, p1.y - 200f);
-        for (int i = 1; i < pointNum+1; i++)
+        bezierPoints[0] = new Vector2(p1.x, p1.y - 150f);
+        bezierPoints[1] = p1;
+        for (int i = 2; i < pointNum+1; i++)
         {
             Vector3 point=BezierPoint(p1, p2, p3, p4, interval*i);
             bezierPoints[i] = new Vector2(point.x, point.y);
         }
         
-        bezierPoints[pointNum+1] = new Vector2(p4.x, p4.y - 200f);
+        bezierPoints[pointNum+1] = new Vector2(p4.x, p4.y - 150f);
 
         return bezierPoints;
     }

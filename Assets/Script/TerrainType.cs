@@ -1,6 +1,6 @@
 public enum TerrainType
 {
-    Plane1,
-    Plane2,
-    Steep1
+    Terrain1,
+    Terrain2,
+    Terrain3
 };
