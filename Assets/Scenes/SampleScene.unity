@@ -7676,7 +7676,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &99165328
 GameObject:
@@ -18140,7 +18140,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1268954302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18153,9 +18153,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36c9b43d912ad104a811cb923d477685, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstacleGenerator: {fileID: 0}
   terrainPool: {fileID: 548893710}
-  terrainOffset: {x: 0, y: 0, z: 0}
+  terrainOffset: {x: 100, y: 100, z: 0}
+  bezierMeshGenerator: {fileID: 2057250806}
 --- !u!4 &1268954303
 Transform:
   m_ObjectHideFlags: 0
@@ -18169,7 +18169,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1276168952
 GameObject:
@@ -30361,7 +30361,7 @@ Transform:
   m_Children:
   - {fileID: 663136898}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2010490361
 GameObject:
@@ -33253,13 +33253,8 @@ MonoBehaviour:
   bezierGenerator: {fileID: 1402071593}
   generatorMesh: {fileID: 1052568756}
   bezierPointList: []
-  p1: {x: 279.73535, y: -136.32928, z: -6}
-  p2: {x: 332.59906, y: -163.65674, z: 0}
-  p3: {x: 390.71558, y: -186.76852, z: 0}
-  p4: {x: 444.94464, y: -225.47014, z: 0}
   pointNum: 132
   meshName: terrain9
-  smoothMode: 0
 --- !u!4 &2057250807
 Transform:
   m_ObjectHideFlags: 0
