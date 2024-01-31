@@ -68,10 +68,6 @@ public class GeneratorMesh : MonoBehaviour
         ground.AddComponent<MeshRenderer>();
         PolygonCollider2D point = ground.GetComponent<PolygonCollider2D>();
 
-        foreach(Vector2 p in point.points)
-        {
-            Debug.Log(p);
-        }
 
         Vector3 tmp = new Vector3();
         for (int i = 0; i < point.GetTotalPointCount(); i++)

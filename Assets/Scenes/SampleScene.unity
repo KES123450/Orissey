@@ -18154,7 +18154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   terrainPool: {fileID: 548893710}
-  terrainOffset: {x: 100, y: 100, z: 0}
+  terrainOffset: {x: 400, y: -100, z: 0}
   bezierMeshGenerator: {fileID: 2057250806}
 --- !u!4 &1268954303
 Transform:
