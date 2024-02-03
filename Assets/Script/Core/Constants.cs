@@ -2,17 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Constants : MonoBehaviour
+namespace Constants
 {
-    // Start is called before the first frame update
-    void Start()
+    public static class Map
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public static readonly Vector3 TerrainSpace = new Vector3(150f, -100f, 0);
+        public const int TerrainMaxCount = 8;
     }
 }

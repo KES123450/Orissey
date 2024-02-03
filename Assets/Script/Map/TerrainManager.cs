@@ -10,7 +10,6 @@ public class TerrainManager : MonoBehaviour
     private Queue<GameObject> terrainQueue = new();
     private Vector3 previousTerrainEndPoint=Vector3.zero; // endPoint알아내기용
     private GameObject previousTerrain;
-    [SerializeField] private Vector3 terrainOffset;
     [SerializeField] private BezierMeshGenerator bezierMeshGenerator;
     private float time;
 
@@ -43,7 +42,7 @@ public class TerrainManager : MonoBehaviour
         //다음 지형 생성
         TerrainType selectedTerrainType = (TerrainType)UnityEngine.Random.Range(0, System.Enum.GetValues(typeof(TerrainType)).Length);
 
-        Vector3 nextTerrainPos = previousTerrainEndPoint + terrainOffset;
+        Vector3 nextTerrainPos = previousTerrainEndPoint + Constants.Map.TerrainSpace;
         GameObject nextTerrain= Instantiate(terrainDatas[selectedTerrainType], nextTerrainPos, Quaternion.identity);
         TerrainData nextTerrainData = nextTerrain.transform.GetChild(0).GetComponent<TerrainData>();
         Vector3 nextCP1ToWorld = nextTerrain.transform.GetChild(0).TransformPoint(nextTerrainData.cp1);
@@ -75,7 +74,7 @@ public class TerrainManager : MonoBehaviour
         time += Time.deltaTime;
         if (time >=5f)
         {
-            if (terrainQueue.Count >= 6)
+            if (terrainQueue.Count >= Constants.Map.TerrainMaxCount)
             {
                 Destroy(terrainQueue.Dequeue());
                 Destroy(terrainQueue.Dequeue());
