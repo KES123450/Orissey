@@ -11145,7 +11145,7 @@ MonoBehaviour:
   m_LightType: 1
   m_BlendStyleIndex: 3
   m_FalloffIntensity: 0.59
-  m_Color: {r: 0.4732455, g: 0.30967486, b: 0.09482565, a: 0.33405718}
+  m_Color: {r: 0.4732455, g: 0.30967486, b: 0.09482565, a: 0}
   m_Intensity: 2
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
@@ -18154,7 +18154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   terrainPool: {fileID: 548893710}
-  terrainOffset: {x: 400, y: -100, z: 0}
+  terrainOffset: {x: 500, y: -100, z: 0}
   bezierMeshGenerator: {fileID: 2057250806}
 --- !u!4 &1268954303
 Transform:
@@ -24624,7 +24624,7 @@ MonoBehaviour:
   m_ComponentVersion: 1
   m_LightType: 3
   m_BlendStyleIndex: 1
-  m_FalloffIntensity: 0.576
+  m_FalloffIntensity: 0
   m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_Intensity: 14.12
   m_LightVolumeIntensity: 7.16

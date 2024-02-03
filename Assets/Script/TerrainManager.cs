@@ -42,15 +42,18 @@ public class TerrainManager : MonoBehaviour
     {
         //다음 지형 생성
         TerrainType selectedTerrainType = (TerrainType)UnityEngine.Random.Range(0, System.Enum.GetValues(typeof(TerrainType)).Length);
+
         Vector3 nextTerrainPos = previousTerrainEndPoint + terrainOffset;
         GameObject nextTerrain= Instantiate(terrainDatas[selectedTerrainType], nextTerrainPos, Quaternion.identity);
         TerrainData nextTerrainData = nextTerrain.transform.GetChild(0).GetComponent<TerrainData>();
+        Vector3 nextCP1ToWorld = nextTerrain.transform.GetChild(0).TransformPoint(nextTerrainData.cp1);
+        nextTerrain.transform.position += nextTerrain.transform.position - nextCP1ToWorld;
 
         //이어주는 지형 생성
         TerrainData previousTerrainData = previousTerrain.GetComponent<TerrainData>();
         Vector3 previousCP3ToWorld = previousTerrain.transform.TransformPoint(previousTerrainData.cp3);
         Vector3 previousCP4ToWorld = previousTerrain.transform.TransformPoint(previousTerrainData.cp4);
-        Vector3 nextCP1ToWorld = nextTerrain.transform.GetChild(0).TransformPoint(nextTerrainData.cp1);
+        nextCP1ToWorld = nextTerrain.transform.GetChild(0).TransformPoint(nextTerrainData.cp1);
         Vector3 nextCP2ToWorld = nextTerrain.transform.GetChild(0).TransformPoint(nextTerrainData.cp2);
 
         GameObject terrainConnector = bezierMeshGenerator.CreateBezierMesh(
@@ -72,10 +75,10 @@ public class TerrainManager : MonoBehaviour
         time += Time.deltaTime;
         if (time >=5f)
         {
-            if (terrainQueue.Count >= 10)
+            if (terrainQueue.Count >= 6)
             {
-                terrainQueue.Dequeue();
-                terrainQueue.Dequeue();
+                Destroy(terrainQueue.Dequeue());
+                Destroy(terrainQueue.Dequeue());
             }
             TerrainGenerator();
             time = 0;
