@@ -37,7 +37,7 @@ public class TerrainManager : MonoBehaviour
         
     }
 
-    public void TerrainGenerator()
+    public void GenerateTerrain()
     {
         //다음 지형 생성
         TerrainType selectedTerrainType = (TerrainType)UnityEngine.Random.Range(0, System.Enum.GetValues(typeof(TerrainType)).Length);
@@ -72,14 +72,14 @@ public class TerrainManager : MonoBehaviour
     void FixedUpdate()
     {
         time += Time.deltaTime;
-        if (time >=5f)
+        if (time >=13f)
         {
-            if (terrainQueue.Count >= Constants.Map.TerrainMaxCount)
+            /*if (terrainQueue.Count >= Constants.Map.TerrainMaxCount)
             {
                 Destroy(terrainQueue.Dequeue());
                 Destroy(terrainQueue.Dequeue());
-            }
-            TerrainGenerator();
+            }*/
+            GenerateTerrain();
             time = 0;
         }
     }

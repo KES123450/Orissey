@@ -11,7 +11,7 @@ public class TerrainManagerEditor : Editor
 
         if (GUILayout.Button("TerrainGererate"))
         {
-            terrainManager.TerrainGenerator();
+            terrainManager.GenerateTerrain();
         }
     }
 }
