@@ -42,9 +42,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private ParticleSystem boostParticle;
     [SerializeField] private ParticleSystem flipParticle;
 
-    private GameObject playerOnTerrain;
-    public GameObject PlayerOnTerrain => playerOnTerrain;
-
     void Start()
     {
         gravity = Vector3.down * gravityForce;
@@ -91,11 +88,6 @@ public class PlayerController : MonoBehaviour
             velocity = AdjustDirectionToSlope(velocity).normalized;
         }
         
-    }
-
-    private void GetPlayerOnTerrain()
-    {
-        playerOnTerrain = Physics2D.Raycast(transform.position, Vector3.down, 100f, 1 << 6).transform.gameObject;
     }
 
     private void SetRaycastHit()
@@ -225,9 +217,10 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+       
         SetVelocity();
         PlayerState();
-        GetPlayerOnTerrain();
+
     }
 
     void Update()
