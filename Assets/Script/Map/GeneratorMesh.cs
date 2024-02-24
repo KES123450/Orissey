@@ -49,7 +49,7 @@ public class GeneratorMesh : MonoBehaviour
         mesh.vertices = sortVertiece.ToArray();
         mesh.triangles = triagles.ToArray();
 
-        AssetDatabase.CreateAsset(mesh, "Assets/Resources/Prefab/Terrain/" + meshName + ".asset");// 새로추가
+        AssetDatabase.CreateAsset(mesh, "Assets/Prefab/Terrain/" + meshName + ".asset");// 새로추가
         AssetDatabase.SaveAssets();
 
         ground.GetComponent<MeshFilter>().mesh = mesh;

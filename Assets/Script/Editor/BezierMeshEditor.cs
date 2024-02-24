@@ -9,7 +9,6 @@ public class BezierMeshEditor : Editor
     private Collider2D prevTerrain;
     private Collider2D nextTerrain;
     private BezierMeshGenerator bezierMeshGenerator;
-    private bool checkSnap;
     private void OnSceneGUI()
     {
         bezierMeshGenerator = (BezierMeshGenerator)target;
@@ -22,7 +21,6 @@ public class BezierMeshEditor : Editor
         Handles.Label(bezierMeshGenerator.p3, "p3");
         bezierMeshGenerator.p4 = Handles.PositionHandle(bezierMeshGenerator.p4, Quaternion.identity);
         Handles.Label(bezierMeshGenerator.p4, "p4");
-
 
         int count = 30;
         for(float i=0; i<count; i++)
@@ -38,8 +36,6 @@ public class BezierMeshEditor : Editor
             Handles.DrawLine(beforePoint, afterPoint);
         }
 
-        if (!checkSnap)
-            return;
 
         Collider2D terrain1 = Physics2D.OverlapCircle(bezierMeshGenerator.p1, 1f);
         prevTerrain = terrain1;
@@ -75,8 +71,6 @@ public class BezierMeshEditor : Editor
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
-        checkSnap = GUILayout.Toggle(checkSnap, "checkSnap");
-
         if (GUILayout.Button("MeshGenerate"))
         {
             bezierMeshGenerator.CreateBezierMesh();
