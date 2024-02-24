@@ -6,26 +6,34 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float rayDistance = 5f;
     [SerializeField] private float slopeHitDistance;
-    public Rigidbody2D rigid;
+    public Rigidbody2D playerRigid;
+
+    [field:SerializeField]
+    public Rigidbody2D frontWheelRigid { get; set; }
+    [field: SerializeField]
+    public Rigidbody2D backWheelRigid { get; set; }
+
     public float walkForce;
     public float maxWalkForce;
-    public float gravityForce = 5f;
+    public float jumpForce;
     public float time;
     public float rotateInterpolationFactor;
     public Vector3 velocity;
-    public Vector3 gravity;
     private Vector3 upDirection;
+
+
+    [SerializeField] public WheelJoint2D backWheel;
+    public JointMotor2D backMoter { get; set; }
 
     float playerAngle;
     private float boostCheck=0;
     
-    public AnimationCurve jumpAnimation;
-    public float GoalTime;
     public bool isMove;
+    public bool isJump;
     public bool isStop;
     public bool isBoost;
     public bool isGrounded;
-    private bool isSlope;
+
     private RaycastHit2D raycastHit;
     private RaycastHit2D rightSlopeHit;
     private RaycastHit2D leftSlopeHit;
@@ -33,32 +41,38 @@ public class PlayerController : MonoBehaviour
     public Transform childAngle;
     public int anglePos;
     public int airRotateForce;
+
     private float boostTimer;
     [SerializeField] private float boostTime;
     [SerializeField] private float boostForce;
-    private IPlayerState moveState, rotateState, stopState;
+    private IPlayerState moveState,jumpState, rotateState, stopState, idleState;
     private PlayerStateContext playerStateContext;
 
     [SerializeField] private ParticleSystem boostParticle;
     [SerializeField] private ParticleSystem flipParticle;
 
-    void Start()
+    private GameObject playerOnTerrain;
+    public GameObject PlayerOnTerrain => playerOnTerrain;
+
+    private void Start()
     {
-        gravity = Vector3.down * gravityForce;
-        rigid = GetComponent<Rigidbody2D>();
-        childAngle = transform.GetChild(0);
+        playerRigid = GetComponent<Rigidbody2D>();
         velocity=transform.right;
         upDirection = new Vector3(0, 1, 0);
+        backMoter = backWheel.motor;
 
         playerStateContext = new PlayerStateContext(this);
         moveState = GetComponent<PlayerMoveState>();
+        jumpState = GetComponent<PlayerJumpState>();
         rotateState = GetComponent<PlayerRotateState>();
         stopState= GetComponent<PlayerStopState>();
+        idleState = GetComponent<PlayerIdleState>();
     }
 
     public void MovePlayer()
     {
         playerStateContext.Transition(moveState);
+        
     }
 
     public void RotatePlayer()
@@ -69,6 +83,16 @@ public class PlayerController : MonoBehaviour
     public void StopPlayer()
     {
         playerStateContext.Transition(stopState);
+    }
+
+    public void IdlePlayer()
+    {
+        playerStateContext.Transition(idleState);
+    }
+
+    public void JumpPlayer()
+    {
+        playerStateContext.Transition(jumpState);
     }
 
     public Vector3 AdjustDirectionToSlope(Vector3 direction)
@@ -128,6 +152,12 @@ public class PlayerController : MonoBehaviour
         {
             isMove = false;
         }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            
+            isJump = true;
+        }
     }
 
     public void SetBoostCheck(float value)
@@ -165,11 +195,11 @@ public class PlayerController : MonoBehaviour
         {
             transform.localEulerAngles += new Vector3(0, 0, -0.01f * airRotateForce);
             SetBoostCheck(-0.01f * airRotateForce);
-            rigid.constraints = RigidbodyConstraints2D.None;
+            playerRigid.constraints = RigidbodyConstraints2D.None;
         }
         else
         {
-            rigid.constraints = RigidbodyConstraints2D.FreezeRotation;
+            playerRigid.constraints = RigidbodyConstraints2D.FreezeRotation;
         }
 
     }
@@ -182,9 +212,9 @@ public class PlayerController : MonoBehaviour
                 boostParticle.Play();
             }
 
-            if (rigid.velocity.x >= 0)
+            if (playerRigid.velocity.x >= 0)
             {
-                rigid.velocity += rigid.velocity.normalized * boostForce * Time.deltaTime;
+                playerRigid.velocity += playerRigid.velocity.normalized * boostForce * Time.deltaTime;
             }
             
             boostTimer -= Time.deltaTime;
@@ -199,20 +229,36 @@ public class PlayerController : MonoBehaviour
    
     private void PlayerState()
     {
+
+        if (isGrounded && isJump)
+        {
+            JumpPlayer();
+            return;
+        }
+
+
         if (isGrounded&&isMove)
         {
             MovePlayer();
+            return;
         }
+
 
         if (!isGrounded)
         {
             RotatePlayer();
+            return;
         }
 
         if (isStop)
         {
             StopPlayer();
+            return;
         }
+
+        IdlePlayer();
+
+
     }
 
     void FixedUpdate()
@@ -228,7 +274,7 @@ public class PlayerController : MonoBehaviour
         SetRaycastHit();
         SetSlopeHit();
         SetJumpFlag();
-        ChangePlayerAngle();
+        //ChangePlayerAngle();
     }
 
     private void LateUpdate()

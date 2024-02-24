@@ -8,14 +8,16 @@ public class PlayerRotateState : MonoBehaviour, IPlayerState
     {
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            controller.transform.localEulerAngles += new Vector3(0, 0, rotateForce * controller.anglePos);
-            controller.SetBoostCheck(rotateForce * controller.anglePos);
+            controller.playerRigid.AddTorque(70f);
+            /*controller.transform.localEulerAngles += new Vector3(0, 0, rotateForce * controller.anglePos);
+            controller.SetBoostCheck(rotateForce * controller.anglePos);*/
         }
 
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            controller.transform.localEulerAngles += new Vector3(0, 0, -rotateForce * controller.anglePos);
-            controller.SetBoostCheck(-rotateForce * controller.anglePos);
+            controller.playerRigid.AddTorque(-70f);
+            /*controller.transform.localEulerAngles += new Vector3(0, 0, -rotateForce * controller.anglePos);
+            controller.SetBoostCheck(-rotateForce * controller.anglePos);*/
         }
     }
 }
