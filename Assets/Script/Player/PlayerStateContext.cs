@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerStateContext
+public class PlayerStateContext : MonoBehaviour
 {
     public PlayerStateContext(PlayerController controller)
     {
