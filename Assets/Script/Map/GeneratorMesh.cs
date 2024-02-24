@@ -49,7 +49,7 @@ public class GeneratorMesh : MonoBehaviour
         mesh.vertices = sortVertiece.ToArray();
         mesh.triangles = triagles.ToArray();
 
-        AssetDatabase.CreateAsset(mesh, "Assets/Prefab/Terrain/" + meshName + ".asset");// 새로추가
+        AssetDatabase.CreateAsset(mesh, "Assets/Resources/Prefab/Terrain/" + meshName + ".asset");// 새로추가
         AssetDatabase.SaveAssets();
 
         ground.GetComponent<MeshFilter>().mesh = mesh;
@@ -68,10 +68,6 @@ public class GeneratorMesh : MonoBehaviour
         ground.AddComponent<MeshRenderer>();
         PolygonCollider2D point = ground.GetComponent<PolygonCollider2D>();
 
-        foreach(Vector2 p in point.points)
-        {
-            Debug.Log(p);
-        }
 
         Vector3 tmp = new Vector3();
         for (int i = 0; i < point.GetTotalPointCount(); i++)

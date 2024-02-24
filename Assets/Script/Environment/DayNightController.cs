@@ -57,6 +57,7 @@ public class DayNightController : MonoBehaviour
     public Renderer oceanSpecular;
     public AnimationCurve specularIntenseCurve;
 
+    private bool isDay = true;
     void UpdateSkyColor()
     {
         skyGradient.material.SetColor("_TopColor", skyTopColor.Evaluate(timeSlider));
@@ -87,7 +88,7 @@ public class DayNightController : MonoBehaviour
     float CalculateCurveDelta(AnimationCurve curve)
     {
         float valueAtT = curve.Evaluate(timeSlider);
-        float valueAtDeltaT = curve.Evaluate(timeSlider + timeDelta);
+        float valueAtDeltaT = isDay ? curve.Evaluate(timeSlider + timeDelta) : curve.Evaluate(timeSlider - timeDelta);
 
         float deltaCurve = valueAtDeltaT - valueAtT;
 
@@ -128,7 +129,24 @@ public class DayNightController : MonoBehaviour
 
     void FixedUpdate()
     {
-        timeSlider += timeDelta;
+        if (isDay)
+        {
+            timeSlider += timeDelta;
+            if (timeSlider >= 1.05f)
+            {
+                isDay = false;
+            }
+
+        }
+        else
+        {
+            timeSlider -= timeDelta;
+            if (timeSlider <= -0.05f)
+            {
+                isDay = true;
+            }
+        }
+        
         UpdateSunMoonPosition();
     }
 }

@@ -54,7 +54,11 @@ public class PlayerController : MonoBehaviour
     private GameObject playerOnTerrain;
     public GameObject PlayerOnTerrain => playerOnTerrain;
 
+<<<<<<< HEAD
     private void Start()
+=======
+    void Start()
+>>>>>>> main
     {
         playerRigid = GetComponent<Rigidbody2D>();
         velocity=transform.right;
@@ -112,6 +116,11 @@ public class PlayerController : MonoBehaviour
             velocity = AdjustDirectionToSlope(velocity).normalized;
         }
         
+    }
+
+    private void GetPlayerOnTerrain()
+    {
+        playerOnTerrain = Physics2D.Raycast(transform.position, Vector3.down, 100f, 1 << 6).transform.gameObject;
     }
 
     private void SetRaycastHit()
@@ -263,10 +272,9 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-       
         SetVelocity();
         PlayerState();
-
+        GetPlayerOnTerrain();
     }
 
     void Update()
