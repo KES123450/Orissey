@@ -7931,7 +7931,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-<<<<<<< HEAD
   m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &132329258
@@ -8004,10 +8003,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3155360905700270630, guid: c4bb34787a4a632478f3e7ac01bfb53c, type: 3}
   m_PrefabInstance: {fileID: 132329258}
   m_PrefabAsset: {fileID: 0}
-=======
-  m_RootOrder: 25
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
->>>>>>> parent of 1eb849b ([Feat] BezierMeshEditor 스냅 bool값 추가)
 --- !u!1 &149119814
 GameObject:
   m_ObjectHideFlags: 0
@@ -8046,11 +8041,7 @@ Transform:
   - {fileID: 685249266}
   - {fileID: 1263191963}
   m_Father: {fileID: 0}
-<<<<<<< HEAD
   m_RootOrder: 17
-=======
-  m_RootOrder: 18
->>>>>>> parent of 1eb849b ([Feat] BezierMeshEditor 스냅 bool값 추가)
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &149119816
 MonoBehaviour:
@@ -8444,11 +8435,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-<<<<<<< HEAD
   m_RootOrder: 23
-=======
-  m_RootOrder: 24
->>>>>>> parent of 1eb849b ([Feat] BezierMeshEditor 스냅 bool값 추가)
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &251982086
 GameObject:
@@ -8722,11 +8709,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-<<<<<<< HEAD
   m_RootOrder: 21
-=======
-  m_RootOrder: 22
->>>>>>> parent of 1eb849b ([Feat] BezierMeshEditor 스냅 bool값 추가)
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &286015275
 GameObject:
@@ -14690,11 +14673,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-<<<<<<< HEAD
   m_RootOrder: 22
-=======
-  m_RootOrder: 23
->>>>>>> parent of 1eb849b ([Feat] BezierMeshEditor 스냅 bool값 추가)
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &962903398 stripped
 Transform:
@@ -15275,11 +15254,7 @@ Transform:
   - {fileID: 1048462207}
   - {fileID: 1351366841}
   m_Father: {fileID: 0}
-<<<<<<< HEAD
   m_RootOrder: 20
-=======
-  m_RootOrder: 21
->>>>>>> parent of 1eb849b ([Feat] BezierMeshEditor 스냅 bool값 추가)
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1012914863
 MonoBehaviour:
@@ -18147,11 +18122,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-<<<<<<< HEAD
   m_RootOrder: 25
-=======
-  m_RootOrder: 26
->>>>>>> parent of 1eb849b ([Feat] BezierMeshEditor 스냅 bool값 추가)
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1268954301
 GameObject:
@@ -26229,11 +26200,7 @@ Transform:
   - {fileID: 1288892496}
   - {fileID: 2022959938}
   m_Father: {fileID: 0}
-<<<<<<< HEAD
   m_RootOrder: 18
-=======
-  m_RootOrder: 19
->>>>>>> parent of 1eb849b ([Feat] BezierMeshEditor 스냅 bool값 추가)
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1576277764
 GameObject:
@@ -28329,11 +28296,7 @@ Transform:
   - {fileID: 36055275}
   - {fileID: 620720815}
   m_Father: {fileID: 0}
-<<<<<<< HEAD
   m_RootOrder: 19
-=======
-  m_RootOrder: 20
->>>>>>> parent of 1eb849b ([Feat] BezierMeshEditor 스냅 bool값 추가)
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1723291241
 MonoBehaviour:
@@ -28349,100 +28312,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parallaxFactorX: -0.35
   parallaxFactorY: -0.1
-<<<<<<< HEAD
-=======
---- !u!1 &1730937398
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1730937400}
-  - component: {fileID: 1730937399}
-  m_Layer: 0
-  m_Name: FrontObjectSpawner
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1730937399
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1730937398}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0da3032ffe254cc48a5f53ba5f6905d7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectSpaceX: 5
-  objectOffsetY: -1.5
-  playerMovementOffset: 5
---- !u!4 &1730937400
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1730937398}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1744991417
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1744991419}
-  - component: {fileID: 1744991418}
-  m_Layer: 0
-  m_Name: GameManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1744991418
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1744991417}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6692829b41c52d44886f7bb999fd0151, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &1744991419
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1744991417}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.8611858, y: -0.5646454, z: -5.0881443}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
->>>>>>> parent of 1eb849b ([Feat] BezierMeshEditor 스냅 bool값 추가)
 --- !u!1 &1756428725
 GameObject:
   m_ObjectHideFlags: 0
@@ -34312,7 +34181,6 @@ Transform:
   m_Father: {fileID: 1012914862}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-<<<<<<< HEAD
 --- !u!4 &2095014337 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2622683993218901794, guid: 5b109ed13b51c8b498064fb39f2c22ba, type: 3}
@@ -34323,8 +34191,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3084671342151950306, guid: 9ab143d70f0faae48bb221d2bff22728, type: 3}
   m_PrefabInstance: {fileID: 3084671343814875926}
   m_PrefabAsset: {fileID: 0}
-=======
->>>>>>> parent of 1eb849b ([Feat] BezierMeshEditor 스냅 bool값 추가)
 --- !u!1 &2108239271
 GameObject:
   m_ObjectHideFlags: 0
