@@ -54,11 +54,8 @@ public class PlayerController : MonoBehaviour
     private GameObject playerOnTerrain;
     public GameObject PlayerOnTerrain => playerOnTerrain;
 
-<<<<<<< HEAD
-    private void Start()
-=======
     void Start()
->>>>>>> main
+
     {
         playerRigid = GetComponent<Rigidbody2D>();
         velocity=transform.right;
@@ -242,6 +239,7 @@ public class PlayerController : MonoBehaviour
         if (isGrounded && isJump)
         {
             JumpPlayer();
+            isJump = false;
             return;
         }
 
