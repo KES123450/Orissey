@@ -14,3 +14,9 @@ public enum FrontObjectType
     LongGrass2,
     Ranunculus
 }
+
+public enum PlayerAnimationType
+{
+    JumpAni,
+    LandAni
+}

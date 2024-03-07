@@ -6,6 +6,7 @@ public class PlayerIdleState : MonoBehaviour, IPlayerState
 {
     public void Handle(PlayerController controller)
     {
+        
         controller.backWheel.useMotor = false;
         RigidbodyConstraints2D constraints = RigidbodyConstraints2D.FreezeRotation;
         controller.backWheelRigid.constraints = constraints;

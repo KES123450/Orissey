@@ -15,7 +15,12 @@ public class PlayerController : MonoBehaviour
 
     public float walkForce;
     public float maxWalkForce;
-    public float jumpForce;
+    [field: SerializeField]
+    public float jumpForce { get; private set; }
+    [field: SerializeField]
+    public Vector2 jumpDirection { get; private set; }
+    [field: SerializeField]
+    public float torqueForce { get; private set; }
     public float time;
     public float rotateInterpolationFactor;
     public Vector3 velocity;
@@ -51,6 +56,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private ParticleSystem boostParticle;
     [SerializeField] private ParticleSystem flipParticle;
 
+    [field: SerializeField]
+    public PlayerAnimation playerAnim { get; private set; }
+    [field: SerializeField] 
+    public Animator DuckAnimator { get; private set; }
+
+    private bool prevAirState;
     private GameObject playerOnTerrain;
     public GameObject PlayerOnTerrain => playerOnTerrain;
 
@@ -96,6 +107,13 @@ public class PlayerController : MonoBehaviour
         playerStateContext.Transition(jumpState);
     }
 
+    public void ResetAllAnimatorTrigger()
+    {
+        DuckAnimator.ResetTrigger("isJump");
+        DuckAnimator.SetBool("isRotateLeft", false);
+        DuckAnimator.SetBool("isRotateRight", false);
+    }
+
     public Vector3 AdjustDirectionToSlope(Vector3 direction)
     {
         Vector3 adjustVelocityDirection = Vector3.ProjectOnPlane(direction, raycastHit.normal).normalized;
@@ -113,6 +131,15 @@ public class PlayerController : MonoBehaviour
             velocity = AdjustDirectionToSlope(velocity).normalized;
         }
         
+    }
+   private void CheckLandForAnim()
+   {
+        bool nowAirState = isGrounded;
+        if(prevAirState==false&& nowAirState == true)
+        {
+            playerAnim.Play(PlayerAnimationType.LandAni,playerRigid.velocity.magnitude);
+        }
+        prevAirState = nowAirState;
     }
 
     private void GetPlayerOnTerrain()
@@ -138,11 +165,13 @@ public class PlayerController : MonoBehaviour
         {
             boostCheck = 0;
             isGrounded = true;
+            DuckAnimator.SetBool("isGround", true);
         }
 
         if (!rightSlopeHit && !leftSlopeHit)
         {
             isGrounded = false;
+            DuckAnimator.SetBool("isGround", false);
         }
     }
     
@@ -239,7 +268,6 @@ public class PlayerController : MonoBehaviour
         if (isGrounded && isJump)
         {
             JumpPlayer();
-            isJump = false;
             return;
         }
 
@@ -251,7 +279,7 @@ public class PlayerController : MonoBehaviour
         }
 
 
-        if (!isGrounded)
+        if (!isGrounded&&!isJump)
         {
             RotatePlayer();
             return;
@@ -279,6 +307,7 @@ public class PlayerController : MonoBehaviour
     {
         SetRaycastHit();
         SetSlopeHit();
+        CheckLandForAnim();
         SetJumpFlag();
         //ChangePlayerAngle();
     }
