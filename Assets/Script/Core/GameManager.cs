@@ -28,11 +28,13 @@ public class GameManager : MonoBehaviour
                 Destroy(this.gameObject);
             }
         }
-            
+
+        player = GameObject.Find("Player").GetComponent<PlayerController>();
+
     }
 
     private void Start()
     {
-        player = GameObject.Find("Player").GetComponent<PlayerController>();
+        
     }
 }
