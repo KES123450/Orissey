@@ -33,7 +33,7 @@ public class FrontObjectSpawner : MonoBehaviour
 
     private void SpawnFrontObject()
     {
-        GameObject terrain= GameManager.Instance.Player.PlayerOnTerrain;
+        GameObject terrain= StageManager.Instance.Player.PlayerOnTerrain;
         Vector2[] terrainPoints = terrain.GetComponent<PolygonCollider2D>().points;
         FrontObjectType selectedObjectType = (FrontObjectType)Random.Range(0, System.Enum.GetValues(typeof(FrontObjectType)).Length);
         GameObject frontObject = Instantiate(objectDatas[selectedObjectType], FindObjectSpawnPos(terrainPoints,terrain.transform), Quaternion.identity, frontLayer);
@@ -42,8 +42,8 @@ public class FrontObjectSpawner : MonoBehaviour
 
     private void CalculatePlayerMovementForSpawn()
     {
-        playerMovementByX += GameManager.Instance.Player.transform.position.x - prevPlayerPosByX;
-        prevPlayerPosByX = GameManager.Instance.Player.transform.position.x;
+        playerMovementByX += StageManager.Instance.Player.transform.position.x - prevPlayerPosByX;
+        prevPlayerPosByX = StageManager.Instance.Player.transform.position.x;
 
         if(playerMovementByX >= playerMovementOffset)
         {

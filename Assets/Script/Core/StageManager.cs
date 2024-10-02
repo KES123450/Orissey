@@ -2,13 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class StageManager : MonoBehaviour
 {
-    /*
-    private static GameManager instance;
+    private static StageManager instance;
     private PlayerController player;
     public PlayerController Player => player;
-    public static GameManager Instance
+    public static StageManager Instance
     {
         get
         {
@@ -33,9 +32,4 @@ public class GameManager : MonoBehaviour
         player = GameObject.Find("Player").GetComponent<PlayerController>();
 
     }
-
-    private void Start()
-    {
-        
-    }*/
 }

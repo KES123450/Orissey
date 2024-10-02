@@ -10,7 +10,7 @@ public class LandscapeParallaxEffect : MonoBehaviour
 
     private void Start()
     {
-        terrainDistance = GameManager.Instance.Player.gameObject.GetComponent<TerrainDistance>();
+        terrainDistance = StageManager.Instance.Player.gameObject.GetComponent<TerrainDistance>();
         startPosY = transform.localPosition.y;
     }
 

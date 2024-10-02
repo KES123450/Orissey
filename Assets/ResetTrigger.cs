@@ -7,7 +7,7 @@ public class ResetTrigger : StateMachineBehaviour
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         Debug.Log("Trigger");
-        GameManager.Instance.Player.ResetAllAnimatorTrigger();
+        StageManager.Instance.Player.ResetAllAnimatorTrigger();
     }
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     //override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

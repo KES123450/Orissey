@@ -8,7 +8,7 @@ public class TerrainManager : MonoBehaviour
 
     private Dictionary<TerrainType, GameObject> terrainDatas = new();
     private Queue<GameObject> terrainQueue = new();
-    private Vector3 previousTerrainEndPoint=Vector3.zero; // endPoint¾Ë¾Æ³»±â¿ë
+    private Vector3 previousTerrainEndPoint=Vector3.zero; // endPointï¿½Ë¾Æ³ï¿½ï¿½ï¿½ï¿½
     private GameObject previousTerrain;
     [SerializeField] private BezierMeshGenerator bezierMeshGenerator;
     private float time;
@@ -16,7 +16,7 @@ public class TerrainManager : MonoBehaviour
     void Start()
     {
         InitTerrainData();
-
+        
         TerrainType selectedTerrainType = (TerrainType)UnityEngine.Random.Range(0, System.Enum.GetValues(typeof(TerrainType)).Length);
         Vector3 nextTerrainPos = new Vector3(0, -500f, 0);
         GameObject nextTerrain = Instantiate(terrainDatas[selectedTerrainType], nextTerrainPos, Quaternion.identity);
@@ -39,7 +39,7 @@ public class TerrainManager : MonoBehaviour
 
     public void GenerateTerrain()
     {
-        //´ÙÀ½ ÁöÇü »ý¼º
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         TerrainType selectedTerrainType = (TerrainType)UnityEngine.Random.Range(0, System.Enum.GetValues(typeof(TerrainType)).Length);
 
         Vector3 nextTerrainPos = previousTerrainEndPoint + Constants.Map.TerrainSpace;
@@ -48,7 +48,7 @@ public class TerrainManager : MonoBehaviour
         Vector3 nextCP1ToWorld = nextTerrain.transform.GetChild(0).TransformPoint(nextTerrainData.cp1);
         nextTerrain.transform.position += nextTerrain.transform.position - nextCP1ToWorld;
 
-        //ÀÌ¾îÁÖ´Â ÁöÇü »ý¼º
+        //ï¿½Ì¾ï¿½ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         TerrainData previousTerrainData = previousTerrain.GetComponent<TerrainData>();
         Vector3 previousCP3ToWorld = previousTerrain.transform.TransformPoint(previousTerrainData.cp3);
         Vector3 previousCP4ToWorld = previousTerrain.transform.TransformPoint(previousTerrainData.cp4);
