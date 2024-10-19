@@ -19,10 +19,10 @@ public class GeneratorMesh : MonoBehaviour
     {
         ground.AddComponent<MeshFilter>();
         ground.AddComponent<MeshRenderer>();
-        PolygonCollider2D point = ground.GetComponent<PolygonCollider2D>();
+        EdgeCollider2D point = ground.GetComponent<EdgeCollider2D>();
 
         Vector3 tmp = new Vector3();
-        for (int i = 0; i < point.GetTotalPointCount(); i++)
+        for (int i = 0; i < point.pointCount; i++)
         {
             tmp.x = point.points[i].x;
             tmp.y = point.points[i].y;
@@ -30,10 +30,8 @@ public class GeneratorMesh : MonoBehaviour
         }
 
         sortVertiece = vertiece.OrderBy(x => x.x).ToList();
-        Vector3 center = new Vector3(((sortVertiece[0].x + sortVertiece[point.GetTotalPointCount() - 1].x) / 2), sortVertiece[0].y, 0);
-
+        Vector3 center = new Vector3(((sortVertiece[0].x + sortVertiece[point.pointCount - 1].x) / 2), sortVertiece[0].y, 0);
         sortVertiece.Insert(0, center);
-
 
         triagles.Clear();
         for (int i = 1; i < sortVertiece.Count-1; i++)
@@ -42,14 +40,13 @@ public class GeneratorMesh : MonoBehaviour
             triagles.Add(i);
             triagles.Add(i + 1);
         }
-        
 
         Mesh mesh = new Mesh();
         mesh.name = meshName;
         mesh.vertices = sortVertiece.ToArray();
         mesh.triangles = triagles.ToArray();
 
-        AssetDatabase.CreateAsset(mesh, "Assets/Resources/Prefab/Terrain/" + meshName + ".asset");// 새로추가
+        AssetDatabase.CreateAsset(mesh, "Assets/Resources/Prefab/Terrain/" + meshName + ".asset");
         AssetDatabase.SaveAssets();
 
         ground.GetComponent<MeshFilter>().mesh = mesh;
@@ -66,11 +63,11 @@ public class GeneratorMesh : MonoBehaviour
     {
         ground.AddComponent<MeshFilter>();
         ground.AddComponent<MeshRenderer>();
-        PolygonCollider2D point = ground.GetComponent<PolygonCollider2D>();
+        EdgeCollider2D point = ground.GetComponent<EdgeCollider2D>();
 
 
         Vector3 tmp = new Vector3();
-        for (int i = 0; i < point.GetTotalPointCount(); i++)
+        for (int i = 0; i < point.pointCount; i++)
         {
             tmp.x = point.points[i].x;
             tmp.y = point.points[i].y;
@@ -78,7 +75,7 @@ public class GeneratorMesh : MonoBehaviour
         }
 
         sortVertiece = vertiece.OrderBy(x => x.x).ToList();
-        Vector3 center = new Vector3(((sortVertiece[0].x + sortVertiece[point.GetTotalPointCount() - 1].x) / 2), sortVertiece[0].y, 0);
+        Vector3 center = new Vector3(((sortVertiece[0].x + sortVertiece[point.pointCount - 1].x) / 2), sortVertiece[0].y, 0);
 
         sortVertiece.Insert(0, center);
 

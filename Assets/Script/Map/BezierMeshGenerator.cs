@@ -18,11 +18,11 @@ public class BezierMeshGenerator : MonoBehaviour
     public void CreateBezierMesh()
     {
         GameObject ground = new GameObject();
-        PolygonCollider2D polygonCollider2D= new PolygonCollider2D();
+        EdgeCollider2D edgeCollider2D= new EdgeCollider2D();
         
         Vector2[] bezierPoints = bezierGenerator.GenerateBezierList(p1, p2, p3, p4,pointNum);
-        polygonCollider2D= ground.AddComponent<PolygonCollider2D>();
-        polygonCollider2D.points = bezierPoints;
+        edgeCollider2D= ground.AddComponent<EdgeCollider2D>();
+        edgeCollider2D.points = bezierPoints;
 
         generatorMesh.generateMesh(ground,meshName);
         ground.AddComponent<TerrainData>();
@@ -32,11 +32,11 @@ public class BezierMeshGenerator : MonoBehaviour
     public GameObject CreateBezierMesh(Vector3 p1, Vector3 p2, Vector3 p3, Vector3 p4)
     {
         GameObject ground = new GameObject();
-        PolygonCollider2D polygonCollider2D = new PolygonCollider2D();
+        EdgeCollider2D edgeCollider2D = new EdgeCollider2D();
 
         Vector2[] bezierPoints = bezierGenerator.GenerateBezierList(p1, p2, p3, p4, pointNum);
-        polygonCollider2D = ground.AddComponent<PolygonCollider2D>();
-        polygonCollider2D.points = bezierPoints;
+        edgeCollider2D = ground.AddComponent<EdgeCollider2D>();
+        edgeCollider2D.points = bezierPoints;
 
         generatorMesh.generateMesh(ground);
         ground.AddComponent<TerrainData>();

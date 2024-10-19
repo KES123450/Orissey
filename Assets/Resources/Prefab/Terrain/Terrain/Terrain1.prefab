@@ -103,6 +103,7 @@ GameObject:
   - component: {fileID: 7973327820766150236}
   - component: {fileID: 5314959315903562247}
   - component: {fileID: 6733264477843335730}
+  - component: {fileID: 8128367854394589628}
   m_Layer: 6
   m_Name: New Game Object
   m_TagString: Untagged
@@ -351,6 +352,18 @@ MonoBehaviour:
   cp2: {x: 191.31584, y: -144.71227, z: 0}
   cp3: {x: 226.87166, y: -109.00184, z: 0}
   cp4: {x: 279.73535, y: -136.32928, z: 0}
+--- !u!114 &8128367854394589628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6843374351045439417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52adecabcf2171d4f8222d10d606e10e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7793555129109074976
 GameObject:
   m_ObjectHideFlags: 0
@@ -364,6 +377,7 @@ GameObject:
   - component: {fileID: 7793555129109074981}
   - component: {fileID: 7793555129109074982}
   - component: {fileID: 7793555129109074983}
+  - component: {fileID: 9115450567023641655}
   m_Layer: 6
   m_Name: New Game Object
   m_TagString: Untagged
@@ -612,6 +626,18 @@ MonoBehaviour:
   cp2: {x: 196.5616, y: 3.0506287, z: 0}
   cp3: {x: 237.5899, y: 29.958244, z: 0}
   cp4: {x: 253.66287, y: -21.692013, z: 0}
+--- !u!114 &9115450567023641655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7793555129109074976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52adecabcf2171d4f8222d10d606e10e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7793555129586921231
 GameObject:
   m_ObjectHideFlags: 0
@@ -625,6 +651,7 @@ GameObject:
   - component: {fileID: 7793555129586921228}
   - component: {fileID: 7793555129586921229}
   - component: {fileID: 7793555129586921230}
+  - component: {fileID: 7048014484997302626}
   m_Layer: 6
   m_Name: New Game Object
   m_TagString: Untagged
@@ -873,6 +900,18 @@ MonoBehaviour:
   cp2: {x: 9.823837, y: 51.42587, z: 0}
   cp3: {x: 82.036575, y: 89.32608, z: 0}
   cp4: {x: 139.29909, y: 46.188354, z: 0}
+--- !u!114 &7048014484997302626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7793555129586921231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52adecabcf2171d4f8222d10d606e10e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &929110471696172635
 PrefabInstance:
   m_ObjectHideFlags: 0

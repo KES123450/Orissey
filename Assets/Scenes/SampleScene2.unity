@@ -7167,49 +7167,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rayDistance: 1.5
   slopeHitDistance: 0.5
-  rigid: {fileID: 0}
+  playerRigid: {fileID: 0}
+  <frontWheelRigid>k__BackingField: {fileID: 0}
+  <backWheelRigid>k__BackingField: {fileID: 0}
   walkForce: 30
   maxWalkForce: 60
-  gravityForce: 5
+  <jumpForce>k__BackingField: 0
+  <jumpDirection>k__BackingField: {x: 0, y: 0}
+  <torqueForce>k__BackingField: 0
   time: 0
   rotateInterpolationFactor: 12
   velocity: {x: 0, y: 0, z: 0}
-  gravity: {x: 0, y: 0, z: 0}
-  jumpAnimation:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.080084294
-      value: 1.1506808
-      inSlope: 1.3974708
-      outSlope: 1.3974708
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1.4245317
-      value: 0.00025805173
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  GoalTime: 2
+  backWheel: {fileID: 0}
   isMove: 0
+  isJump: 0
   isStop: 0
   isBoost: 0
   isGrounded: 0
@@ -7220,6 +7191,8 @@ MonoBehaviour:
   boostForce: 6
   boostParticle: {fileID: 1276168955}
   flipParticle: {fileID: 13508776}
+  <playerAnim>k__BackingField: {fileID: 0}
+  <DuckAnimator>k__BackingField: {fileID: 0}
 --- !u!60 &408352404
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -7346,7 +7319,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0b7fddc7f4674c42b2c7b501b874339, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotateForce: 0.04
 --- !u!114 &408352412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21319,7 +21291,7 @@ MonoBehaviour:
   generatorMesh: {fileID: 1052568756}
   bezierPointList: []
   pointNum: 132
-  meshName: terrain9
+  meshName: test
 --- !u!4 &2057250807
 Transform:
   m_ObjectHideFlags: 0

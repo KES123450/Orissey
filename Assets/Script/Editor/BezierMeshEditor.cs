@@ -45,7 +45,7 @@ public class BezierMeshEditor : Editor
         prevTerrain = terrain1;
         if (terrain1 != null)
         {
-            PolygonCollider2D collider = terrain1.GetComponent<PolygonCollider2D>();
+            EdgeCollider2D collider = terrain1.GetComponent<EdgeCollider2D>();
             bezierMeshGenerator.p1 = collider.transform.TransformPoint(collider.points[collider.points.Length - 2]);
         }
 
@@ -53,7 +53,7 @@ public class BezierMeshEditor : Editor
         nextTerrain = terrain2;
         if (terrain2 != null)
         {
-            PolygonCollider2D collider = terrain2.GetComponent<PolygonCollider2D>();
+            EdgeCollider2D collider = terrain2.GetComponent<EdgeCollider2D>();
             bezierMeshGenerator.p4 = collider.transform.TransformPoint(collider.points[1]);
         }
     }

@@ -17,11 +17,10 @@ public class TerrainManager : MonoBehaviour
     {
         InitTerrainData();
         
-        TerrainType selectedTerrainType = (TerrainType)UnityEngine.Random.Range(0, System.Enum.GetValues(typeof(TerrainType)).Length);
-        Vector3 nextTerrainPos = new Vector3(0, -500f, 0);
-        GameObject nextTerrain = Instantiate(terrainDatas[selectedTerrainType], nextTerrainPos, Quaternion.identity);
+        Vector3 nextTerrainPos = new Vector3(0, 0, 0);
+        GameObject nextTerrain = Instantiate(Resources.Load("Prefab/Terrain/Terrain/StartTerrain") as GameObject, nextTerrainPos, Quaternion.identity);
 
-        Vector2[] terrainPoints = nextTerrain.transform.GetChild(nextTerrain.transform.childCount - 1).GetComponent<PolygonCollider2D>().points;
+        Vector2[] terrainPoints = nextTerrain.transform.GetChild(nextTerrain.transform.childCount - 1).GetComponent<EdgeCollider2D>().points;
         previousTerrainEndPoint = nextTerrain.transform.TransformDirection(nextTerrain.transform.GetChild(nextTerrain.transform.childCount - 1).TransformPoint(terrainPoints[terrainPoints.Length - 2]));
         Debug.Log(previousTerrainEndPoint);
         previousTerrain = nextTerrain.transform.GetChild(nextTerrain.transform.childCount - 1).gameObject;
@@ -64,7 +63,7 @@ public class TerrainManager : MonoBehaviour
         terrainQueue.Enqueue(nextTerrain);
 
 
-        Vector2[] terrainPoints = nextTerrain.transform.GetChild(nextTerrain.transform.childCount - 1).GetComponent<PolygonCollider2D>().points;
+        Vector2[] terrainPoints = nextTerrain.transform.GetChild(nextTerrain.transform.childCount - 1).GetComponent<EdgeCollider2D>().points;
         previousTerrainEndPoint = nextTerrain.transform.GetChild(nextTerrain.transform.childCount - 1).TransformPoint(terrainPoints[terrainPoints.Length-2]);
         previousTerrain = nextTerrain.transform.GetChild(nextTerrain.transform.childCount - 1).gameObject;
     }
